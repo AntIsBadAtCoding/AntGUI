@@ -151,10 +151,7 @@ function library:New(Name)
 			CornerRadius = UDim.new(1, 0)
 		}, Circle)
 		
-		button.MouseButton1Down:Connect(function()
-			toggled = not toggled
-			toggledevent:Fire(toggled)
-		end)
+		button.MouseButton1Down:Connect(func)
 		
 		Circle.bind.Event:connect(function(Data)
 			if Data == true then
