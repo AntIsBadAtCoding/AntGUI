@@ -126,25 +126,54 @@ function library:New(Name)
 	end
 	
 	function library.MakeToggle(name, color, tab, count, func)
+		local toggled = false
 		local Ypos = ((count * 55) -50)
+		
 		local button = library:Create("TextButton", {
 			Text = name,
 			TextScaled = true,
 			BackgroundColor3 = color,
-			Size = UDim2.fromOffset(327, 50),
+			Size = UDim2.fromOffset(330, 50),
 			Position = UDim2.fromOffset(5, Ypos)
 		}, buttonbar)
-		button.MouseButton1Down:Connect(func)
+		
+		
+		local Circle = library:Create("Frame", {
+			Size = UDim2.fromOffset(50, 50),
+			Position = UDim2.fromOffset(340, Ypos),
+			BackgroundColor3 = Color3.fromRGB(200, 0, 0)
+		}, buttonbar)
+		
+		local toggledevent = Instance.new("BindableEvent", Circle)
+		toggledevent.Name = "bind"
+		
+		local corner = library:Create("UICorner", {
+			CornerRadius = UDim.new(1, 0)
+		}, Circle)
+		
+		button.MouseButton1Down:Connect(function()
+			toggled = not toggled
+			toggledevent:Fire(toggled)
+		end)
+		
+		Circle.bind.Event:connect(function(Data)
+			if Data == true then
+				Circle.BackgroundColor3 = Color3.fromRGB(0, 200, 0)
+			else
+				Circle.BackgroundColor3 = Color3.fromRGB(200, 0, 0)
+			end
+		end)
 
 		tabevent.Event:Connect(function()
 			if selectedtab == tab then
 				button.Visible = true
+				Circle.Visible = true
 			else
 				button.Visible = false
+				Circle.Visible = false
 			end
 		end)
 	end
-	
 end
 
 return library
