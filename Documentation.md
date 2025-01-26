@@ -33,5 +33,9 @@ local slider1 = window.MakeSlider("Slider name", 0, 50, 1, 3, function(val)
 	print(val)
 end)
 ```
+if the buttons are bugged (tab 2 buttons on tab 1 when script loads) then do and replace the 1 with what the main tab is
+```
+window.FixButtons(1)
+```
 
 I might make more later uh
