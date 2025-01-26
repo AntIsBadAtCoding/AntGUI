@@ -88,16 +88,17 @@ function library:New(Name)
 	local tabcount = 0
 	local tabs = {}
 
-	function library.MakeTab(imageID, currenttab)
+	function library.MakeTab(tabname, currenttab)
 		tabcount += 1
 		local posxoffset = ((tabcount * 70) - 65)
-		local tab = library:Create("ImageButton", {
+		local tab = library:Create("TextButton", {
+			Text = tabname,
+			TextScaled = true,
 			BackgroundColor3 = Color3.fromRGB(200, 100, 100),
 			BorderColor3 = Color3.fromRGB(0, 0, 0),
 			Size = UDim2.fromOffset(60, 60),
 			Position = UDim2.fromOffset(5, posxoffset)
 		}, sidebar)
-		tab.Image = "rbxassetid://" .. imageID
 		tab.MouseButton1Down:Connect(function()
 			selectedtab = currenttab
 			tabevent:Fire(selectedtab)
@@ -259,6 +260,47 @@ function library:New(Name)
 			else
 				sliderbase.Visible = false
 				bar.Visible = false
+			end
+		end)
+	end
+	
+	function library.MakeTextInput(name, tab, count, func)
+		local Ypos = ((count * 55) -50)
+		
+		local button = library:Create("TextButton", {
+			Position = UDim2.fromOffset(5, Ypos),
+			Size = UDim2.fromOffset(185, 50),
+			BackgroundColor3 = Color3.fromRGB(200, 100, 100),
+			Text = name,
+			TextScaled = true
+		}, buttonbar)
+		local frame = library:Create("Frame", {
+			Position = UDim2.fromOffset(190, button.Position.Y),
+			Size = UDim2.fromOffset(185, 50),
+			BackgroundColor3 = Color3.fromRGB(200, 100, 100)
+		}, button)
+		local textinput = library:Create("TextBox", {
+			Position = UDim2.new(0, 0, 0, 0),
+			Size = UDim2.new(1, 0, 1, 0),
+			BackgroundTransparency = 1,
+			TextScaled = true
+		}, frame)
+		
+		local bindevent = library:Create("BindableEvent", {
+			Name = "BindEvent"
+		}, textinput)
+		
+		button.MouseButton1Down:Connect(function()
+			bindevent:Fire(textinput.Text)
+		end)
+		
+		bindevent.Event:Connect(func)
+		
+		tabevent.Event:Connect(function()
+			if selectedtab == tab then
+				button.Visible = true
+			else
+				button.Visible = false
 			end
 		end)
 	end
