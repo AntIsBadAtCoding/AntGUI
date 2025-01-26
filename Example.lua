@@ -1,4 +1,4 @@
-local lib = require(script.Parent.Lib) --loads the source
+local lib = loadstring(game:HttpGet('https://raw.githubusercontent.com/AntIsBadAtCoding/AntGUI/refs/heads/main/Source.lua')) --loads the source
 
 lib.New("Ants UI lib") -- makes the window
 
