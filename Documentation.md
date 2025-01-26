@@ -11,20 +11,27 @@ To set the keybind for the ui to disappear and re appear do
 you can replace RightAlt with any Keybind/Keycode
 
 To make a tab do
-```lib.MakeTab("rbxassetid://7205257578", Color3.fromRGB(200, 100, 100), 1)```
+```lib.MakeTab("rbxassetid://7205257578", 1)```
 you can replace any thing here its just
-MakeTab("asset code", color3 code, tab number)
+MakeTab("asset code", tab number)
 
 To make a button do
 ```
-lib.MakeButton("Button", Color3.fromRGB(200, 100, 100), 1, 1, function()
+lib.MakeButton("Button",  1, 1, function()
 	print("test")
 end)
 ```
 then to make a toggle do
 ```
-lib.MakeToggle("Toggle", Color3.fromRGB(200, 100, 100), 1, 2, function()
-	
+lib.MakeToggle("Toggle",  1, 2, function(val)
+	print(val)
 end)
 ```
+To make a Slider do
+```
+local slider1 = window.MakeSlider("Slider name", 0, 50, 1, 3, function(val)
+	print(val)
+end)
+```
+
 I might make more later uh
