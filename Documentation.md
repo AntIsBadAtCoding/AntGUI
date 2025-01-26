@@ -1,19 +1,26 @@
 # DOCUMENTATION
 
 To load the library put this string:
-```local lib = loadstring(game:HttpGet('https://raw.githubusercontent.com/AntIsBadAtCoding/AntGUI/refs/heads/main/Source.lua'))```
+```
+local lib = loadstring(game:HttpGet('https://raw.githubusercontent.com/AntIsBadAtCoding/AntGUI/refs/heads/main/Source.lua'))
+```
 
 To make the window do
-```lib:New("TITLE")```
+```
+lib:New("TITLE")
+```
 
 To set the keybind for the ui to disappear and re appear do
-```lib.SetKeybind(Enum.KeyCode.RightAlt)```
+```
+lib.SetKeybind(Enum.KeyCode.RightAlt)
+```
 you can replace RightAlt with any Keybind/Keycode
 
 To make a tab do
-```lib.MakeTab("rbxassetid://7205257578", 1)```
+```
+lib.MakeTab("rbxassetid://7205257578", 1)
+```
 you can replace any thing here its just
-MakeTab("asset code", tab number)
 
 To make a button do
 ```
